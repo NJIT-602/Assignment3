@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <title>Registration Form</title>
+    <style>
+        body {
+            background-color: #73C2FB;
+        }
+
+        .form-section {
+            margin-bottom: 20px;
+        }
+        .form-entry {
+            margin-bottom: 10px;
+        }
+
+        /* Style for the submit button */
+        .submit-button {
+            padding: 10px 20px; /*  the padding to change the button size */
+            font-size: 16px; /*  the font size if needed */
+            background-color: #FF7900;
+        }
+    </style>
+</head>
+<body>
+<div style="text-align: center;">
+
+    <div class="form-section">
+        <h1>Please enter your name</h1>
+    </div>
+    <div class="form-section">
+        <form action="Main" method="post" enctype="multipart/form-data" >
+            <div class="form-entry">
+                <label for="firstname">First Name:</label>
+                <input type="text" id="firstname" name="firstname" required><br>
+            </div>
+            <div class="form-entry">
+                <label for="lastname">Last Name:</label>
+                <input type="text" id="lastname" name="lastname" required><br>
+            </div>
+        </form>
+    </div>
+    <div class="form-section">
+        <label>Gender:</label>
+        <input type="radio" id="male" name="gender" value="Male">
+        <label for="male">Male</label>
+        <input type="radio" id="female" name="gender" value="Female">
+        <label for="female">Female</label>
+        <input type="radio" id="other" name="gender" value="Other">
+        <label for="other">Other</label><br>
+    </div>
+    <div class="form-section">
+        <form action="Main" method="post" enctype="multipart/form-data" >
+            <input type="submit" class="submit-button" value="Submit">
+        </form>
+    </div>
+</div>
+</body>
+</html>
