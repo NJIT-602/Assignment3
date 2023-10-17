@@ -17,24 +17,23 @@ public class Main extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
+        // Set the background color using a style attribute
+        out.println("<html>");
+        out.println("<head>");
+        out.println("<style>");
+        out.println("body { background-color: #73C2FB; }");
+        out.println("</style>");
+        out.println("</head>");
+        out.println("<body>");
+
         try {
             String firstName = request.getParameter("firstname");
             String lastName = request.getParameter("lastname");
             String gender = request.getParameter("gender");
 
-            System.out.println("---------");
-//            System.out.println(request.getParameterNames().toString());
-//            System.out.println(request.getParameterValues("firstname")[0]);
-
-            System.out.println("first name: " + firstName);
-            System.out.println("last name: " + lastName);
-            System.out.println("gender: " + gender);
-
-            if (firstName == null || lastName == null) {
-                out.println("<h1>Error: Please enter both first name and last name.</h1>");
-            } else if (gender == null) {
-                out.println("<h1>Error: Please select a gender.</h1>");
-            } else {
+            // Check if first name and last name are valid strings
+            if (isString(firstName) && isString(lastName) && gender != null) {
+                // Valid names, proceed with processing
                 out.println("<h1>Welcome to my Shop</h1>");
                 if (gender.equals("Male")) {
                     out.println("<p>Thank you Mr. " + firstName + " " + lastName + ".</p>");
@@ -43,11 +42,22 @@ public class Main extends HttpServlet {
                 } else {
                     out.println("<p>Thank you " + firstName + " " + lastName + ".</p>");
                 }
+            } else if (gender == null) {
+                out.println("<h1>Error: Please select a gender.</h1>");
+            } else {
+                out.println("<h1>Error: Please enter valid first name and last name.</h1>");
             }
         } catch (Exception e) {
             // Handle the exception, e.g., log it or display an error message
             out.println("<h1>Error: An unexpected error occurred.</h1>");
             e.printStackTrace();
         }
+        out.println("</body>");
+        out.println("</html>");
+        out.close();
+    }
+
+    private boolean isString(String text) {
+        return text != null && !text.trim().isEmpty() && text.matches("^[a-zA-Z]+$");
     }
 }
